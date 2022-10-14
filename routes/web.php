@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Models\Mahasiswa;
 use App\Models\Prodi;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,17 +21,14 @@ Route::get('/', function () {
     return view('/layouts/home', [
     "mahasiswas" => Mahasiswa::all()
     ]);
-})->name('home');
+})->middleware(['auth']);
 
 Route::get('/user/{nama}', function ($name) {
     return 'Halo' . $name;
 });
 
-Route::get('/login', function () {
-    return view('login', [
-    'title' => 'Halaman Login'
-    ]);
-})->name('login');
+Route::get('/login', [AuthController::class, 'loginView']
+)->name('login');
 
 Route::get('/register', function () {
     return view('register');
@@ -38,3 +36,9 @@ Route::get('/register', function () {
 
 Route::post('/action-register',
 [AuthController::class , 'actionRegister']);
+
+Route::post('/action-login',
+[AuthController::class, 'actionLogin']);
+
+Route::get('/logout', 
+[AuthController::class, 'logout']);
