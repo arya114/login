@@ -9,9 +9,7 @@
             <span class="fs-4">{{ Auth::user()->name ?? "HomePage"}}</span>
         </a>
         <ul class="nav nav-pills">
-            <li class="nav-item"><a href="#" class="nav-link active"
-            
-            aria-current="page">Home</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
 
             <li class="nav-item"><a href="#" class="nav-link">Features</a></li>
 
